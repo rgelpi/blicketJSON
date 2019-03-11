@@ -34,7 +34,7 @@ public class Blicket {
         }
         return list;
     }
-    
+
     public boolean isBlicket(){
         if (condition){
             return isNearBlicket();
