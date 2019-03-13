@@ -8,48 +8,54 @@ public class Blicket {
     protected boolean[] features;
 
     /**
-     * Constructor.
-     * @blicketness determines whether the stimulus passed in is a blicket or not.
-     * TRUE indicates that the stimulus is a blicket.
-     * @consistency determines whether the stimulus is consistent with the naive rule.
-     * TRUE indicates that the stimulus follows the naive rule.
-     * @condition indicates which condition the stimulus is subject to.
-     * TRUE indicates the near condition. FALSE indicates distant.
-     * @distractor indicates the counterbalancing.
-     * TRUE indicates a blue distractor. FALSE indicates red.
+     * Represents the stimulus in a given blicket rating trial.
+     * @param stimulus is the string indicating the features.
+     * @param condition is the condition of the trial (TRUE = blue, FALSE = red)
+     * @param distractor is the colour of the counterbalancing (TRUE = blue, FALSE = red).
      */
     public Blicket(String stimulus, boolean condition, boolean distractor){
+
         this.stimulus = stimulus;
         this.condition = condition;
         this.distractor = distractor;
         this.consistency = isConsistent();
         this.blicketness = isBlicket();
         this.features = getFeatures();
+
     }
 
+    /**
+     * An array representing the colours of the five features.
+     * getFeatures[0] = background
+     * getFeatures[1] = outline
+     * getFeatures[2] = corners
+     * getFeatures[3] = centre-left triangle
+     * getFeatures[4] = centre-right triangle
+     * @return an array of booleans representing the features of the stimulus.
+     */
     public boolean[] getFeatures(){
+
         boolean[] list = new boolean[5];
         for (int x = 0; x <= 4; x++){
             list[x] = Colour(stimulus.charAt(x));
         }
         return list;
+
     }
 
     public boolean isBlicket(){
-        if (condition){
-            return isNearBlicket();
-        } else {
-            return !(getFeatures()[2] == getFeatures()[3]);
-        }
+
+        if (condition){ return isNearBlicket(); }
+        else { return !(getFeatures()[2] == getFeatures()[3]); }
     }
 
     public boolean isNearBlicket(){
-        if (distractor){
-            return (getFeatures()[0] & !getFeatures()[2]) ^ (!getFeatures()[0] & !getFeatures()[3]);
-        } else {
-            return (!getFeatures()[0] & getFeatures()[2]) ^ (getFeatures()[0] & getFeatures()[3]);
-        }
+
+        if (distractor){ return (getFeatures()[0] & !getFeatures()[2]) ^ (!getFeatures()[0] & !getFeatures()[3]); }
+        else { return (!getFeatures()[0] & getFeatures()[2]) ^ (getFeatures()[0] & getFeatures()[3]); }
+
     }
+
     /**
      * TRUE = blue.
      * FALSE = red.
@@ -58,24 +64,6 @@ public class Blicket {
         return c.toString().contains("b");
     }
 
-    public boolean isConsistent() {
+    public boolean isConsistent() { return (distractor == getFeatures()[0]) == (isBlicket()); }
 
-        return (distractor == getFeatures()[0]) == (isBlicket());
-
-        }
-
-    public static void main(String[] args) {
-        // Blicket b = new Blicket("brrrr", false, true);
-        // System.out.println(b.isBlicket());
-        // Blicket c = new Blicket("r00b0", true, true);
-        // System.out.println(c.isBlicket());
-
-        String str = new String("brrrr,rrbbb,rbrrr,brbrb,brbbb,rrrbb,bbrbr,rbbrr");
-        String[] strings = str.split(",");
-        for (String string : strings) {
-            System.out.print(new Blicket(string,true,false).isConsistent() + ",");
-        }
-
-
-    }
     }

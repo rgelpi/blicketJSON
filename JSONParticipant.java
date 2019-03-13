@@ -53,8 +53,6 @@ public class JSONParticipant {
     protected final String[] blocksDR = {"rrrbr","rrrbb","rrbrb","rbbrb","brrrr","bbrrb","bbbbr","rbrrr","rrbbb","bbrbr"};
 
 
-
-
     public JSONParticipant(JsonObject j) {
 
         this.values = j;
@@ -105,200 +103,54 @@ public class JSONParticipant {
 
     }
 
-    public String blicketOutput(){
-        boolean cond = this.condition.contains("near");
-        boolean dist = this.condition.contains("blue");
-        Blicket f1s = new Blicket(this.fc_1_selection,cond,dist);
-        Blicket f1u = new Blicket(this.fc_1_unselected,cond,dist);
-        Blicket f2s = new Blicket(this.fc_2_selection,cond,dist);
-        Blicket f2u = new Blicket(this.fc_2_unselected,cond,dist);
-        Blicket f3s = new Blicket(this.fc_3_selection,cond,dist);
-        Blicket f3u = new Blicket(this.fc_3_unselected,cond,dist);
-        Blicket f4s = new Blicket(this.fc_4_selection,cond,dist);
-        Blicket f4u = new Blicket(this.fc_4_unselected,cond,dist);
-        Blicket r1 = new Blicket(this.rating_1_ID,cond,dist);
-        Blicket r2 = new Blicket(this.rating_2_ID,cond,dist);
-        Blicket r3 = new Blicket(this.rating_3_ID,cond,dist);
-        Blicket r4 = new Blicket(this.rating_4_ID,cond,dist);
-        Blicket r5 = new Blicket(this.rating_5_ID,cond,dist);
-        Blicket r6 = new Blicket(this.rating_6_ID,cond,dist);
-        Blicket r7 = new Blicket(this.rating_7_ID,cond,dist);
-        Blicket r8 = new Blicket(this.rating_8_ID,cond,dist);
-        StringBuilder sb = new StringBuilder();
-        sb.append(f1s.isBlicket());
-        sb.append(",");
-        if(f1s.isBlicket()) {
-            sb.append(f1s.isConsistent());
-            sb.append(",");
-            sb.append(f1u.isConsistent());
-        }else{
-            sb.append(f1u.isConsistent());
-            sb.append(",");
-            sb.append(f1s.isConsistent());
-        }
-        sb.append(",");
-        sb.append(f2s.isBlicket());
-        sb.append(",");
-        if(f2s.isBlicket()) {
-            sb.append(f2s.isConsistent());
-            sb.append(",");
-            sb.append(f2u.isConsistent());
-        }else{
-            sb.append(f2u.isConsistent());
-            sb.append(",");
-            sb.append(f2s.isConsistent());
-        }
-        sb.append(",");
-        sb.append(f3s.isBlicket());
-        sb.append(",");
-        if(f3s.isBlicket()) {
-            sb.append(f3s.isConsistent());
-            sb.append(",");
-            sb.append(f3u.isConsistent());
-        }else{
-            sb.append(f3u.isConsistent());
-            sb.append(",");
-            sb.append(f3s.isConsistent());
-        }
-        sb.append(",");
-        sb.append(f4s.isBlicket());
-        sb.append(",");
-        if(f4s.isBlicket()) {
-            sb.append(f4s.isConsistent());
-            sb.append(",");
-            sb.append(f4u.isConsistent());
-        }else{
-            sb.append(f4u.isConsistent());
-            sb.append(",");
-            sb.append(f4s.isConsistent());
-        }
-        sb.append(",");
-        sb.append(r1.isBlicket());
-        sb.append(",");
-        sb.append(r1.isConsistent());
-        sb.append(",");
-        sb.append(r2.isBlicket());
-        sb.append(",");
-        sb.append(r2.isConsistent());
-        sb.append(",");
-        sb.append(r3.isBlicket());
-        sb.append(",");
-        sb.append(r3.isConsistent());
-        sb.append(",");
-        sb.append(r4.isBlicket());
-        sb.append(",");
-        sb.append(r4.isConsistent());
-        sb.append(",");
-        sb.append(r5.isBlicket());
-        sb.append(",");
-        sb.append(r5.isConsistent());
-        sb.append(",");
-        sb.append(r6.isBlicket());
-        sb.append(",");
-        sb.append(r6.isConsistent());
-        sb.append(",");
-        sb.append(r7.isBlicket());
-        sb.append(",");
-        sb.append(r7.isConsistent());
-        sb.append(",");
-        sb.append(r8.isBlicket());
-        sb.append(",");
-        sb.append(r8.isConsistent());
-        sb.append(",");
-        return sb.toString();
-    }
-
     @Override
     public String toString(){
+
         StringBuilder sb = new StringBuilder();
-        sb.append(attention1);
-        sb.append(",");
-        sb.append(attention2);
-        sb.append(",\"");
-        sb.append(comments);
-        sb.append("\",");
-        sb.append(condition);
-        sb.append(",");
-        sb.append(distractor);
-        sb.append(",");
-        sb.append(experimentId);
-        sb.append(",\"");
-        sb.append(explanation);
-        sb.append("\",");
-        sb.append(isComplete);
-        sb.append(",");
-        sb.append(fc_1_selection);
-        sb.append(",");
-        sb.append(fc_1_unselected);
-        sb.append(",");
-        sb.append(fc_2_selection);
-        sb.append(",");
-        sb.append(fc_2_unselected);
-        sb.append(",");
-        sb.append(fc_3_selection);
-        sb.append(",");
-        sb.append(fc_3_unselected);
-        sb.append(",");
-        sb.append(fc_4_selection);
-        sb.append(",");
-        sb.append(fc_4_unselected);
-        sb.append(",");
-        sb.append(rating_1_ID);
-        sb.append(",");
-        sb.append(rating_1_IsBlicket);
-        sb.append(",");
-        sb.append(rating_1_Value);
-        sb.append(",");
-        sb.append(rating_2_ID);
-        sb.append(",");
-        sb.append(rating_2_IsBlicket);
-        sb.append(",");
-        sb.append(rating_2_Value);
-        sb.append(",");
-        sb.append(rating_3_ID);
-        sb.append(",");
-        sb.append(rating_3_IsBlicket);
-        sb.append(",");
-        sb.append(rating_3_Value);
-        sb.append(",");
-        sb.append(rating_4_ID);
-        sb.append(",");
-        sb.append(rating_4_IsBlicket);
-        sb.append(",");
-        sb.append(rating_4_Value);
-        sb.append(",");
-        sb.append(rating_5_ID);
-        sb.append(",");
-        sb.append(rating_5_IsBlicket);
-        sb.append(",");
-        sb.append(rating_5_Value);
-        sb.append(",");
-        sb.append(rating_6_ID);
-        sb.append(",");
-        sb.append(rating_6_IsBlicket);
-        sb.append(",");
-        sb.append(rating_6_Value);
-        sb.append(",");
-        sb.append(rating_7_ID);
-        sb.append(",");
-        sb.append(rating_7_IsBlicket);
-        sb.append(",");
-        sb.append(rating_7_Value);
-        sb.append(",");
-        sb.append(rating_8_ID);
-        sb.append(",");
-        sb.append(rating_8_IsBlicket);
-        sb.append(",");
-        sb.append(rating_8_Value);
-        sb.append(",");
-        sb.append(rulepreference);
-        sb.append(",");
-        sb.append(sessionId);
-        sb.append(",");
-        sb.append(shape);
-        sb.append(",\"");
-        sb.append(submitDateTime);
-        sb.append("\"");
+        sb.append(attention1); sb.append(",");
+        sb.append(attention2); sb.append(",\"");
+        sb.append(comments); sb.append("\",");
+        sb.append(condition); sb.append(",");
+        sb.append(distractor); sb.append(",");
+        sb.append(experimentId); sb.append(",\"");
+        sb.append(explanation); sb.append("\",");
+        sb.append(isComplete); sb.append(",");
+        sb.append(fc_1_selection); sb.append(",");
+        sb.append(fc_1_unselected); sb.append(",");
+        sb.append(fc_2_selection); sb.append(",");
+        sb.append(fc_2_unselected); sb.append(",");
+        sb.append(fc_3_selection); sb.append(",");
+        sb.append(fc_3_unselected); sb.append(",");
+        sb.append(fc_4_selection); sb.append(",");
+        sb.append(fc_4_unselected); sb.append(",");
+        sb.append(rating_1_ID); sb.append(",");
+        sb.append(rating_1_IsBlicket); sb.append(",");
+        sb.append(rating_1_Value); sb.append(",");
+        sb.append(rating_2_ID); sb.append(",");
+        sb.append(rating_2_IsBlicket); sb.append(",");
+        sb.append(rating_2_Value); sb.append(",");
+        sb.append(rating_3_ID); sb.append(",");
+        sb.append(rating_3_IsBlicket); sb.append(",");
+        sb.append(rating_3_Value); sb.append(",");
+        sb.append(rating_4_ID); sb.append(",");
+        sb.append(rating_4_IsBlicket); sb.append(",");
+        sb.append(rating_4_Value); sb.append(",");
+        sb.append(rating_5_ID); sb.append(",");
+        sb.append(rating_5_IsBlicket); sb.append(",");
+        sb.append(rating_5_Value); sb.append(",");
+        sb.append(rating_6_ID); sb.append(",");
+        sb.append(rating_6_IsBlicket); sb.append(",");
+        sb.append(rating_6_Value); sb.append(",");
+        sb.append(rating_7_ID); sb.append(",");
+        sb.append(rating_7_IsBlicket); sb.append(",");
+        sb.append(rating_7_Value); sb.append(",");
+        sb.append(rating_8_ID); sb.append(",");
+        sb.append(rating_8_IsBlicket); sb.append(",");
+        sb.append(rating_8_Value); sb.append(",");
+        sb.append(rulepreference); sb.append(",");
+        sb.append(sessionId); sb.append(",");
+        sb.append(shape); sb.append(",\"");
+        sb.append(submitDateTime); sb.append("\"");
         return sb.toString();
 
     }
