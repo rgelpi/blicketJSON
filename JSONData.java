@@ -44,11 +44,11 @@ public class JSONData {
 
         Path output = Paths.get(path);
         List<String> lines = new ArrayList<>();
-        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,BR,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Eligible?");
+        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,BR,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Attention,Shape,Corr,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Conf,YESB.CON,YESB.INC,NONB.CON,NONB.INC");
         int count = 1;
         for (JSONParticipant p : this.getParticipants()) {
             Trials t = new Trials(p,count);
-            lines.add(t.toString());
+            lines.add(t.toString() + t.getSplitScores());
             count++;
         }
         try { Files.write(output,lines, Charset.forName("UTF-8")); }

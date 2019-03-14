@@ -34,6 +34,17 @@ public class Trials {
     protected Integer scoreNC = 0;
     protected Integer scoreNI = 0;
 
+    //For use with independent confidence and correctness calculations.
+    protected Integer corScoreBC = 0;
+    protected Integer corScoreBI = 0;
+    protected Integer corScoreNC = 0;
+    protected Integer corScoreNI = 0;
+
+    protected Integer conScoreBC = 0;
+    protected Integer conScoreBI = 0;
+    protected Integer conScoreNC = 0;
+    protected Integer conScoreNI = 0;
+
     protected char c = ',';
 
     /**
@@ -79,12 +90,27 @@ public class Trials {
         }
 
         for (BlicketTrial b : this.R){
-            if (b.sort == "BC"){ this.scoreBC += b.score; }
-            if (b.sort == "BI"){ this.scoreBI += b.score; }
-            if (b.sort == "NC"){ this.scoreNC += b.score; }
-            if (b.sort == "NI"){ this.scoreNI += b.score; }
+            if (b.sort == "BC"){ this.scoreBC += b.score; this.corScoreBC += b.corr; this.conScoreBC += b.confidence; }
+            if (b.sort == "BI"){ this.scoreBI += b.score; this.corScoreBI += b.corr; this.conScoreBI += b.confidence; }
+            if (b.sort == "NC"){ this.scoreNC += b.score; this.corScoreNC += b.corr; this.conScoreNC += b.confidence; }
+            if (b.sort == "NI"){ this.scoreNI += b.score; this.corScoreNI += b.corr; this.conScoreNI += b.confidence; }
         }
 
+    }
+
+    public String getSplitScores(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(c); sb.append(c);
+        sb.append(corScoreBC); sb.append(c);
+        sb.append(corScoreBI); sb.append(c);
+        sb.append(corScoreNC); sb.append(c);
+        sb.append(corScoreNI); sb.append(c);
+        sb.append(c);
+        sb.append(conScoreBC); sb.append(c);
+        sb.append(conScoreBI); sb.append(c);
+        sb.append(conScoreNC); sb.append(c);
+        sb.append(conScoreNI); sb.append(c);
+        return sb.toString();
     }
 
     @Override

@@ -2,6 +2,7 @@ public class BlicketTrial extends Blicket {
 
     public Integer confidence;
     public boolean correctness;
+    public Integer corr;
     public boolean response;
     public Blicket alternative;
     public Integer score;
@@ -64,8 +65,10 @@ public class BlicketTrial extends Blicket {
         this.confidence = confidence;
         if (this.response == this.isBlicket()) {
             this.score = this.confidence;
+            this.corr = 1;
         } else {
             this.score = -1 * this.confidence;
+            this.corr = 0;
         }
         if (this.isBlicket()) {
             if (this.isConsistent()) {
