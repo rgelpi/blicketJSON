@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Trials {
 
     protected Integer participantId;
@@ -45,10 +48,27 @@ public class Trials {
     protected Integer conScoreNC = 0;
     protected Integer conScoreNI = 0;
 
+    //For use with ChanceToRateBlicket.
+    protected Integer chanceBC = 0;
+    protected Integer chanceBI = 0;
+    protected Integer chanceNC = 0;
+    protected Integer chanceNI = 0;
+
     protected char c = ',';
+
+    //For use with physical blicket task.
+    protected String subjectID;
+    protected boolean excluded;
+
+    //For use with getNovelties.
+    protected final ArrayList<String> seenNR = new ArrayList<>(Arrays.asList("rrbrr","rbbrb","rrbbb","rbbbr","brbbb","brrrr","brrrb","bbbrr","rbrrr","rbrbb"));
+    protected final ArrayList<String> seenNB = new ArrayList<>(Arrays.asList("bbrbb","brrbr","bbrrr","brrrb","rbrrr","rbbbb","rbbbr","rrrbb","brbbb","brbrr"));
+    protected final ArrayList<String> seenDR = new ArrayList<>(Arrays.asList("rrrbr","rrrbb","rrbrb","rbbrb","bbrbr","brrrr","bbrrb","bbbbr","rbrrr","rrbbb"));
+    protected final ArrayList<String> seenDB = new ArrayList<>(Arrays.asList("bbbrb","bbbrr","bbrbr","brrbr","rrbrb","rbbbb","rrbbr","rrrrb","brbbb","bbrrr"));
 
     /**
      * Collates the data on the participant's trials into sorted bins for use in R.
+     * Uses data from a JSON object from the web app.
      * @param j is an object containing the participant's responses on the trials.
      */
     public Trials(JSONParticipant j, Integer participantId){
@@ -90,11 +110,40 @@ public class Trials {
         }
 
         for (BlicketTrial b : this.R){
-            if (b.sort == "BC"){ this.scoreBC += b.score; this.corScoreBC += b.corr; this.conScoreBC += b.confidence; }
-            if (b.sort == "BI"){ this.scoreBI += b.score; this.corScoreBI += b.corr; this.conScoreBI += b.confidence; }
-            if (b.sort == "NC"){ this.scoreNC += b.score; this.corScoreNC += b.corr; this.conScoreNC += b.confidence; }
-            if (b.sort == "NI"){ this.scoreNI += b.score; this.corScoreNI += b.corr; this.conScoreNI += b.confidence; }
+            if (b.sort == "BC"){ this.scoreBC += b.score; this.corScoreBC += b.corr; this.conScoreBC += b.confidence; this.chanceBC += b.response? 1 : 0; }
+            if (b.sort == "BI"){ this.scoreBI += b.score; this.corScoreBI += b.corr; this.conScoreBI += b.confidence; this.chanceBI += b.response? 1 : 0; }
+            if (b.sort == "NC"){ this.scoreNC += b.score; this.corScoreNC += b.corr; this.conScoreNC += b.confidence; this.chanceNC += b.response? 1 : 0; }
+            if (b.sort == "NI"){ this.scoreNI += b.score; this.corScoreNI += b.corr; this.conScoreNI += b.confidence; this.chanceNI += b.response? 1 : 0; }
         }
+
+    }
+
+    /**
+     * Collates the data on the participant's trials into sorted bins for use in R.
+     * For use with physical blicket task data.
+     * @param a is a test session object.
+     */
+    public Trials(PhysicalParticipant a){
+        this.subjectID = a.subjectID;
+        this.cond = a.condition;
+        this.dist = a.distractor;
+        this.FC1 = a.task1;
+        this.FC2 = a.task2;
+        this.FC3 = a.task3;
+        this.FC4 = a.task4;
+        this.FC = new BlicketTrial[]{this.FC1, this.FC2, this.FC3, this.FC4};
+
+        for (BlicketTrial b : this.FC) {
+            if (b.sort == "CC") { this.scoreCC = b.score; }
+            if (b.sort == "CI") { this.scoreCI = b.score; }
+            if (b.sort == "IC") { this.scoreIC = b.score; }
+            if (b.sort == "II") { this.scoreII = b.score; }
+        }
+
+        this.excluded = a.excluded;
+
+        if(this.cond) this.condition = "near"; else this.condition = "distant";
+        if(this.dist) this.distractor = "blue"; else this.distractor = "red";
 
     }
 
@@ -110,6 +159,73 @@ public class Trials {
         sb.append(conScoreBI); sb.append(c);
         sb.append(conScoreNC); sb.append(c);
         sb.append(conScoreNI); sb.append(c);
+        sb.append(c);
+        sb.append(chanceBC); sb.append(c);
+        sb.append(chanceBI); sb.append(c);
+        sb.append(chanceNC); sb.append(c);
+        sb.append(chanceNI); sb.append(c);
+        return sb.toString();
+    }
+
+    public String getNovelties(BlicketTrial[] b){
+        StringBuilder sb = new StringBuilder();
+        Integer novelBC = 0;
+        Integer novelBI = 0;
+        Integer novelNC = 0;
+        Integer novelNI = 0;
+        Integer seenBC = 0;
+        Integer seenBI = 0;
+        Integer seenNC = 0;
+        Integer seenNI = 0;
+        sb.append(participantId); sb.append(c);
+        sb.append(condition); sb.append(c);
+        sb.append(distractor); sb.append(c);
+        ArrayList<String> list;
+        if (cond&&dist) list = seenNB;
+        else if (cond&&(!dist)) list = seenNR;
+        else if ((!cond)&&dist) list = seenDB;
+        else list = seenDR;
+        for (BlicketTrial t : b) {
+            t.setNovelty(list.contains(t.stimulus));
+            switch(t.sort){
+                case("BC"): if(t.novelty) novelBC += t.corr; else { seenBC += t.corr; } break;
+                case("BI"): if(t.novelty) novelBI += t.corr; else { seenBI += t.corr; } break;
+                case("NC"): if(t.novelty) novelNC += t.corr; else { seenNC += t.corr; } break;
+                case("NI"): if(t.novelty) novelNI += t.corr; else { seenNI += t.corr; } break;
+                default: break;
+            }
+        }
+        for (BlicketTrial t : b){
+            sb.append(t.novelty); sb.append(c);
+        }
+        for (BlicketTrial t : b){
+            sb.append(t.sort); sb.append(c);
+        }
+        for (BlicketTrial t : b){
+            sb.append(t.corr); sb.append(c);
+        }
+        sb.append(novelBC); sb.append(c);
+        sb.append(seenBC); sb.append(c);
+        sb.append(novelBI); sb.append(c);
+        sb.append(seenBI); sb.append(c);
+        sb.append(novelNC); sb.append(c);
+        sb.append(seenNC); sb.append(c);
+        sb.append(novelNI); sb.append(c);
+        sb.append(seenNI);
+        return sb.toString();
+    }
+
+    public String toStringPhys(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(subjectID); sb.append(c);
+        sb.append(condition); sb.append(c);
+        sb.append(distractor); sb.append(c);
+        sb.append(scoreCC); sb.append(c);
+        sb.append(scoreCI); sb.append(c);
+        sb.append(scoreIC); sb.append(c);
+        sb.append(scoreII); sb.append(c);
+        sb.append(excluded);
+
         return sb.toString();
     }
 
