@@ -44,7 +44,7 @@ public class JSONData {
 
         Path output = Paths.get(path);
         List<String> lines = new ArrayList<>();
-        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,BR,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Attention,Shape,Corr,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Conf,YESB.CON,YESB.INC,NONB.CON,NONB.INC");
+        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,BR,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Attention,Shape,Corr,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Conf,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Chance,YESB.CON,YESB.INC,NONB.CON,NONB.INC");
         int count = 1;
         for (JSONParticipant p : this.getParticipants()) {
             Trials t = new Trials(p,count);
@@ -56,13 +56,51 @@ public class JSONData {
 
     }
 
+    public void printNoveltyToCsv(String path){
+        Path output = Paths.get(path);
+        List<String> lines = new ArrayList<>();
+        lines.add("Participant ID,Condition,Distractor,Seen1,Seen2,Seen3,Seen4,Seen5,Seen6,Seen7,Seen8,Sort1,Sort2,Sort3,Sort4,Sort5,Sort6,Sort7,Sort8,Score1,Score2,Score3,Score4,Score5,Score6,Score7,Score8,NovelBC,SeenBC,NovelBI,SeenBI,NovelNC,SeenNC,NovelNI,SeenNI");
+        int count = 1;
+        for (JSONParticipant p : this.getParticipants()) {
+            Trials t = new Trials(p,count);
+            lines.add(t.getNovelties(t.R));
+            count++;
+        }
+        try { Files.write(output,lines, Charset.forName("UTF-8")); }
+        catch (IOException e) { e.printStackTrace(); }
+    }
+
+    public void printRatingJson(String path){
+        Path output = Paths.get(path);
+
+    }
+
+    public void reshapeAdultBRData(String path){
+        Path output = Paths.get(path);
+        List<String> lines = new ArrayList<>();
+        lines.add("subjectId,condition,distractor,blicketness,consistency,adjScore,rawScore,attention,shape");
+        int count = 1;
+        for (JSONParticipant p : this.getParticipants()) {
+            Trials t = new Trials(p,count);
+            lines.add(t.scorer("BC"));
+            lines.add(t.scorer("BI"));
+            lines.add(t.scorer("NC"));
+            lines.add(t.scorer("NI"));
+            count++;
+        }
+        try { Files.write(output,lines, Charset.forName("UTF-8")); }
+        catch (IOException e) { e.printStackTrace(); }
+    }
+
 
     public static void main(String[] args){
 
-        Path file = Paths.get("/Users/rgelpi1/Documents/2019/Explore-Exploit/JSON/new2.json");
+        Path file = Paths.get("/Users/rgelpi/Documents/Explore-Exploit/JSON/new2.json");
         JSONData data = new JSONData(file);
-        data.printToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/raw.csv");
-        data.printScoreToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/score.csv");
+        //data.printToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/raw.csv");
+        //data.printScoreToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/score.csv");
+        //data.printNoveltyToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/novelty.csv");
+        data.reshapeAdultBRData("/Users/rgelpi/Documents/Explore-Exploit/brdata.csv");
 
     }
 }

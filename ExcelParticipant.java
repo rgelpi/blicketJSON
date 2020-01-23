@@ -22,6 +22,14 @@ public class ExcelParticipant {
     protected Integer ICscore;
     protected Integer IIscore;
 
+    protected BlicketCodes codes;
+
+    protected String[] CCblocks;
+    protected String[] CIblocks;
+    protected String[] ICblocks;
+    protected String[] IIblocks;
+
+
     protected boolean inclusion;
     public final char c = ',';
 
@@ -31,6 +39,7 @@ public class ExcelParticipant {
         try{
         this.condition = values[23];
         this.distractor = values[24];
+        this.codes = new BlicketCodes(this.condition, this.distractor);
         this.age = values[4];
         this.decimalAge = values[14];
         this.tasks = values[19].split(" ");
@@ -81,6 +90,16 @@ public class ExcelParticipant {
         catch (IOException e) { e.printStackTrace(); }
     }
 
+    public String fcBlocks(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(subjectId); sb.append(c);
+        sb.append(condition); sb.append(c);
+        sb.append(distractor); sb.append(c);
+
+
+        return sb.toString();
+    }
+
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -127,7 +146,7 @@ public class ExcelParticipant {
     }
 
     public static void main(String[] args){
-        printLines("/Users/rgelpi1/Documents/Explore-Exploit/Physical/FCData.csv","/Users/rgelpi1/Documents/Explore-Exploit/Physical/rdata.csv");
+        printLines("/Users/rgelpi/Documents/Explore-Exploit/Physical/EEdata_90.csv","/Users/rgelpi/Documents/Explore-Exploit/Physical/rdata_90.csv");
     }
 
 

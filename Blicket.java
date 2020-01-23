@@ -1,5 +1,7 @@
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Arrays;
+
 public class Blicket {
 
     protected String stimulus;
@@ -125,4 +127,41 @@ public class Blicket {
 
     public Boolean isConsistent() { return (distractor == getFeatures()[0]) == (isBlicket()); }
 
+    public static void main(String[] args){
+
+        String[] NR_test_blickets = {"rrbrr","rbbrb","rrbbb","rbbbr","brbbb","brrrr","brrrb","bbbrr","rbrrr","rbrbb"};
+        String[] NB_test_blickets = {"bbrbb","brrbr","bbrrr","brrrb","rbrrr","rbbbb","rbbbr","rrrbb","brbbb","brbrr"};
+        String[] DR_test_blickets = {"rrrbr","rrrbb","rrbrb","rbbrb","bbrbr","brrrr","bbrrb","bbbbr","rbrrr","rrbbb"};
+        String[] DB_test_blickets = {"bbbrb","bbbrr","bbrbr","brrbr","rrbrb","rbbbb","rrbbr","rrrrb","brbbb","bbrrr"};
+
+        Boolean[] NR_test_labels = new Boolean[10];
+        Boolean[] NB_test_labels = new Boolean[10];
+        Boolean[] DR_test_labels = new Boolean[10];
+        Boolean[] DB_test_labels = new Boolean[10];
+
+        for(String block : NR_test_blickets){
+            Boolean out = new Blicket(block,true,false).isBlicket();
+            NR_test_labels[ArrayUtils.indexOf(NR_test_blickets,block)] = out;
+        }
+
+        for(String block : NB_test_blickets){
+            Boolean out = new Blicket(block,true,true).isBlicket();
+            NB_test_labels[ArrayUtils.indexOf(NB_test_blickets,block)] = out;
+        }
+
+        for(String block : DR_test_blickets){
+            Boolean out = new Blicket(block,false,false).isBlicket();
+            DR_test_labels[ArrayUtils.indexOf(DR_test_blickets,block)] = out;
+        }
+
+        for(String block : DB_test_blickets){
+            Boolean out = new Blicket(block,false,true).isBlicket();
+            DB_test_labels[ArrayUtils.indexOf(DB_test_blickets,block)] = out;
+        }
+
+        System.out.println(Arrays.toString(NR_test_labels));
+        System.out.println(Arrays.toString(NB_test_labels));
+        System.out.println(Arrays.toString(DR_test_labels));
+        System.out.println(Arrays.toString(DB_test_labels));
     }
+}
