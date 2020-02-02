@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Randomizer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Randomizer/gson-2.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Randomizer/opencsv-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Randomizer/json-20140107.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/Randomizer/commons-io-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

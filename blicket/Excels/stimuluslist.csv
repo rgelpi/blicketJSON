@@ -1,0 +1,24 @@
+Subject,Condition,Distractor,R1 ID,R2 ID,R3 ID,R4 ID,R5 ID,R6 ID,R7 ID,R8 ID
+2,near,blue,rbrrr,rrrrr,rrrbb,rbrbr,bbbrb,brrrr,bbrbb,brbbb
+8,near,blue,bbrrr,rbrrr,brbrr,bbbbr,rrbrr,rrrbr,rrrbb,brrbb
+10,near,blue,brbbr,bbrrr,rbbbb,rbrrr,rrbrb,brbrr,bbrrb,rrbbb
+15,near,blue,rrbbb,rbrrr,rbrrb,bbrrr,brrbb,rrrbb,brbrb,brbrr
+19,near,blue,brbbb,brrbr,bbbbb,rbrrr,rbrbr,rrrbb,brrrr,rbbrb
+27,near,blue,rrrrb,rbrrr,bbbrr,brbbb,bbrbr,rbrbr,rbbbb,bbrbb
+30,near,blue,rrrbr,rbrrr,rbbbr,rrbrr,brbbb,bbrbr,brrbr,bbbrb
+1,near,red,rrbrr,brbbb,brrrb,bbrrr,bbrbr,rbrbr,rbrrr,rrbrb
+4,near,red,rbrrr,rbbrr,brbbb,bbrbb,rbrrb,bbrrb,rrbbb,brrrb
+7,near,red,rbbbr,brbrr,bbrbr,rbrrr,bbbrr,rbbrr,rrrbb,brbbb
+21,near,red,brbbb,brbrb,brrbr,rbbrb,rbrbr,brrrr,rrbbr,rbrbb
+29,near,red,rrrbb,brrrb,brbbr,brbbb,rbrrr,bbrrb,rrbbb,rbbrr
+3,distant,blue,rrbrb,brrbb,brrrr,rbrbr,rbrrb,bbbrb,brbbb,rrbbr
+9,distant,blue,bbrbb,rrrrr,rbbrr,brrbr,brbbr,brbbb,rrbrb,rrbbr
+13,distant,blue,bbrbr,bbrrr,bbrrb,rbbrb,rrbbb,rrbrb,rrrrb,bbrbb
+26,distant,blue,bbrrb,rrbrb,rrrrb,rrrbr,bbrbb,bbrbr,rrbbb,bbrrr
+28,distant,blue,brbrb,rbrbb,rrrrr,bbbrb,rbbbb,bbbbr,brbbb,rrbrb
+5,distant,red,rbbrr,rbbbr,brbrr,bbrbr,bbbbr,brbbb,rbrrr,rrrbr
+12,distant,red,rbrrb,brrrr,rrbbb,brbbr,rrbrr,bbrbr,brrbb,rbbrb
+16,distant,red,bbbbr,rrrbb,rbrbb,rbbbr,brrbb,brbbb,bbrbr,rrbbb
+20,distant,red,rbbbr,rbrbr,rrbbb,rrrbr,bbrbr,bbrrb,brrrb,brbrb
+25,distant,red,rrrbb,bbrrb,rbbbr,rbrrr,bbrbr,brrrb,brbrb,rbbrr
+31,distant,red,brbbr,rbbbr,rrbrr,rrrbr,rrbbb,bbrbr,bbbrr,bbbbr

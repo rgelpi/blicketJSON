@@ -1,0 +1,24 @@
+Subject,Condition,Distractor,R1 ID,R2 ID,R3 ID,R4 ID,R5 ID,R6 ID,R7 ID,R8 ID,R1 Consistent?,R2 Consistent?,R3 Consistent?,R4 Consistent?,R5 Consistent?,R6 Consistent?,R7 Consistent?,R8 Consistent?
+2,near,blue,true,true,false,false,false,true,true,false,false,false,true,true,false,true,true,false
+8,near,blue,true,true,false,false,true,false,false,true,true,false,false,false,false,true,true,true
+10,near,blue,false,true,false,true,true,false,true,false,false,true,true,false,false,false,true,true
+15,near,blue,false,true,true,true,true,false,false,false,true,false,false,true,true,true,false,false
+19,near,blue,false,true,false,true,false,false,true,true,false,true,false,false,true,true,true,false
+27,near,blue,true,true,false,false,true,false,false,true,false,false,false,false,true,true,true,true
+30,near,blue,false,true,false,true,false,true,true,false,true,false,true,false,false,true,true,false
+1,near,red,true,true,false,false,true,false,false,true,true,false,true,true,false,false,false,true
+4,near,red,false,true,true,true,false,false,true,false,false,true,false,false,false,true,true,true
+7,near,red,true,false,true,false,false,true,false,true,true,true,false,false,true,true,false,false
+21,near,red,true,false,true,true,false,false,true,false,false,true,false,true,false,true,true,false
+29,near,red,false,false,true,true,false,false,true,true,false,true,false,false,false,true,true,true
+3,distant,blue,true,true,false,true,false,true,false,false,false,true,false,false,true,true,false,true
+9,distant,blue,true,false,true,true,false,false,true,false,true,true,false,true,false,false,false,true
+13,distant,blue,true,false,false,true,false,true,false,true,true,false,false,false,true,false,true,true
+26,distant,blue,false,true,false,true,true,true,false,false,false,false,true,false,true,true,true,false
+28,distant,blue,true,true,false,true,false,false,false,true,true,false,true,true,true,false,false,false
+5,distant,red,true,false,true,true,false,false,false,true,true,false,false,false,true,true,false,true
+12,distant,red,false,false,false,false,true,true,true,true,false,true,false,true,true,false,false,true
+16,distant,red,false,true,true,false,true,false,true,false,true,true,true,false,false,true,false,false
+20,distant,red,false,true,false,true,true,false,false,true,false,true,false,true,false,true,true,false
+25,distant,red,true,false,false,false,true,false,true,true,true,true,false,false,false,true,false,true
+31,distant,red,false,false,true,true,false,true,true,false,true,false,true,true,false,false,false,true
