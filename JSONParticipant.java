@@ -1,5 +1,11 @@
 import com.google.gson.*;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.Writer;
+import java.io.IOException;
+
 public class JSONParticipant {
 
     protected JsonObject values;
@@ -48,7 +54,7 @@ public class JSONParticipant {
     protected Integer rating_7_Value;
     protected Integer rating_8_Value;
     protected final String[] blocksNB = {"bbrbb","brrbr","bbrrr","brrrb","rbbbb","rbbbr","rrrbb","brbbb","brbrr","rbrrr"};
-    protected final String[] BlocksNR = {"rrbrr","rbbrb","rrbbb","rbbbr","brrrr","brrrb","bbbrr","rbrrr","rbrbb","brbbb"};
+    protected final String[] blocksNR = {"rrbrr","rbbrb","rrbbb","rbbbr","brrrr","brrrb","bbbrr","rbrrr","rbrbb","brbbb"};
     protected final String[] blocksDB = {"bbbrb","bbbrr","bbrbr","brrbr","rbbbb","rrbbr","rrrrb","brbbb","bbrrr","rrbrb"};
     protected final String[] blocksDR = {"rrrbr","rrrbb","rrbrb","rbbrb","brrrr","bbrrb","bbbbr","rbrrr","rrbbb","bbrbr"};
 
@@ -103,6 +109,19 @@ public class JSONParticipant {
 
     }
 
+    public JsonObject blockRatings(){
+        JsonObject b = new JsonObject();
+        b.addProperty(rating_1_ID, rating_1_IsBlicket);
+        b.addProperty(rating_2_ID, rating_2_IsBlicket);
+        b.addProperty(rating_3_ID, rating_3_IsBlicket);
+        b.addProperty(rating_4_ID, rating_4_IsBlicket);
+        b.addProperty(rating_5_ID, rating_5_IsBlicket);
+        b.addProperty(rating_6_ID, rating_6_IsBlicket);
+        b.addProperty(rating_7_ID, rating_7_IsBlicket);
+        b.addProperty(rating_8_ID, rating_8_IsBlicket);
+        return b;
+    }
+
     @Override
     public String toString(){
 
@@ -152,6 +171,27 @@ public class JSONParticipant {
         sb.append(shape); sb.append(",\"");
         sb.append(submitDateTime); sb.append("\"");
         return sb.toString();
+
+    }
+
+    public static void main(String[] args){
+        Path file = Paths.get("/Users/rgelpi/Documents/Explore-Exploit/JSON/new2.json");
+        JSONData data = new JSONData(file);
+        JsonObject participantFile = new JsonObject();
+        Integer count = 1;
+        for (JSONParticipant p : data.getParticipants()){
+            if((Integer.parseInt(p.attention1) == 1) & (Integer.parseInt(p.attention2) == 1) && (p.shape.toLowerCase().contains("shape"))){
+                participantFile.add("participant " + count, p.blockRatings()); }
+            count+=1;
+        }
+        Gson gson = new Gson();
+        try {
+            Writer writer = Files.newBufferedWriter(Paths.get("/Users/rgelpi/Documents/Explore-Exploit/JSON/blocks.json"));
+            gson.toJson(participantFile,writer);
+            writer.close();
+        }catch(IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

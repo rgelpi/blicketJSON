@@ -215,16 +215,22 @@ public class Trials {
         return sb.toString();
     }
 
-    public String toStringPhys(){
+    public String scorer(String trial){
         StringBuilder sb = new StringBuilder();
-        sb.append(subjectID); sb.append(c);
+        sb.append(participantId); sb.append(c);
         sb.append(condition); sb.append(c);
         sb.append(distractor); sb.append(c);
-        sb.append(scoreCC); sb.append(c);
-        sb.append(scoreCI); sb.append(c);
-        sb.append(scoreIC); sb.append(c);
-        sb.append(scoreII); sb.append(c);
-        sb.append(excluded);
+        switch(trial){
+            case "BC": { sb.append("B"); sb.append(c); sb.append("C"); sb.append(c);
+                sb.append(scoreBC); sb.append(c); sb.append(corScoreBC); sb.append(c); break; }
+            case "BI": { sb.append("B"); sb.append(c); sb.append("I"); sb.append(c);
+                sb.append(scoreBI); sb.append(c); sb.append(corScoreBI); sb.append(c); break; }
+            case "NC": { sb.append("N"); sb.append(c); sb.append("C"); sb.append(c);
+                sb.append(scoreNC); sb.append(c); sb.append(corScoreNC); sb.append(c); break; }
+            case "NI": { sb.append("N"); sb.append(c); sb.append("I"); sb.append(c);
+                sb.append(scoreNI); sb.append(c); sb.append(corScoreNI); sb.append(c); break; }
+        }
+        sb.append(attention); sb.append(c); sb.append(shape);
 
         return sb.toString();
     }
