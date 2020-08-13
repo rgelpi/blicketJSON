@@ -78,7 +78,7 @@ public class JSONParticipant {
         this.fc_3_unselected = j.get("fc_3_unselected").getAsString();
         this.fc_4_selection = j.get("fc_4_selection").getAsString();
         this.fc_4_unselected = j.get("fc_4_unselected").getAsString();
-        this.rating_1_ID = j.get("rating_1_ID").getAsString();
+        /* this.rating_1_ID = j.get("rating_1_ID").getAsString();
         this.rating_1_IsBlicket = j.get("rating_1_IsBlicket").getAsInt();
         this.rating_1_Value = j.get("rating_1_Value").getAsInt();
         this.rating_2_ID = j.get("rating_2_ID").getAsString();
@@ -101,7 +101,7 @@ public class JSONParticipant {
         this.rating_7_Value = j.get("rating_7_Value").getAsInt();
         this.rating_8_ID = j.get("rating_8_ID").getAsString();
         this.rating_8_IsBlicket = j.get("rating_8_IsBlicket").getAsInt();
-        this.rating_8_Value = j.get("rating_8_Value").getAsInt();
+        this.rating_8_Value = j.get("rating_8_Value").getAsInt(); */
         this.isComplete = j.get("isComplete").getAsBoolean();
         this.rulepreference = j.get("rulepreference").getAsString();
         this.sessionId = j.get("sessionId").getAsString();
@@ -111,7 +111,7 @@ public class JSONParticipant {
 
     }
 
-    public JsonObject blockRatings(){
+    /* public JsonObject blockRatings(){
         JsonObject b = new JsonObject();
         b.addProperty("condition", condition);
         b.addProperty("distractor", distractor);
@@ -124,7 +124,7 @@ public class JSONParticipant {
         b.addProperty(rating_7_ID, rating_7_IsBlicket);
         b.addProperty(rating_8_ID, rating_8_IsBlicket);
         return b;
-    }
+    } */
 
     public JsonObject forcedChoice(){
         JsonObject b = new JsonObject();
@@ -161,7 +161,7 @@ public class JSONParticipant {
         sb.append(fc_3_unselected); sb.append(",");
         sb.append(fc_4_selection); sb.append(",");
         sb.append(fc_4_unselected); sb.append(",");
-        sb.append(rating_1_ID); sb.append(",");
+        /* sb.append(rating_1_ID); sb.append(",");
         sb.append(rating_1_IsBlicket); sb.append(",");
         sb.append(rating_1_Value); sb.append(",");
         sb.append(rating_2_ID); sb.append(",");
@@ -184,7 +184,7 @@ public class JSONParticipant {
         sb.append(rating_7_Value); sb.append(",");
         sb.append(rating_8_ID); sb.append(",");
         sb.append(rating_8_IsBlicket); sb.append(",");
-        sb.append(rating_8_Value); sb.append(",");
+        sb.append(rating_8_Value); sb.append(","); */
         sb.append(rulepreference); sb.append(",");
         sb.append(sessionId); sb.append(",");
         sb.append(shape); sb.append(",\"");

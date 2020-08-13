@@ -1,8 +1,6 @@
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class ExcelParticipant {
+public class NewExcelParticipant {
 
     protected String[] values;
     protected String subjectId;
@@ -38,35 +36,35 @@ public class ExcelParticipant {
     protected boolean inclusion;
     public final char c = ',';
 
-    public ExcelParticipant(String[] line){
+    public NewExcelParticipant(String[] line){
         this.values = line;
         this.subjectId = values[0];
         try{
-        this.condition = values[23];
-        this.distractor = values[24];
-        this.codes = new BlicketCodes(this.condition, this.distractor);
-        this.age = values[4];
-        this.decimalAge = values[14];
-        this.tasks = values[19].split(" ");
-        for(int i = 0; i < 4; i++){
-            boolean correctSide = tasks[i].contains("R");
-            boolean chosenSide = values[15+i].contains("R");
-            //System.out.print(correctSide + " "); System.out.print(chosenSide + " "); System.out.println(chosenSide == correctSide);
-            if(tasks[i].startsWith("CC")){
-                CCscore = (correctSide == chosenSide) ? 1 : 0;
+            this.condition = values[23];
+            this.distractor = values[24];
+            this.codes = new BlicketCodes(this.condition, this.distractor);
+            this.age = values[4];
+            this.decimalAge = values[14];
+            this.tasks = values[19].split(" ");
+            for(int i = 0; i < 4; i++){
+                boolean correctSide = tasks[i].contains("R");
+                boolean chosenSide = values[15+i].contains("R");
+                //System.out.print(correctSide + " "); System.out.print(chosenSide + " "); System.out.println(chosenSide == correctSide);
+                if(tasks[i].startsWith("CC")){
+                    CCscore = (correctSide == chosenSide) ? 1 : 0;
+                }
+                if(tasks[i].startsWith("CI")){
+                    CIscore = (correctSide == chosenSide) ? 1 : 0;
+                }
+                if(tasks[i].startsWith("IC")){
+                    ICscore = (correctSide == chosenSide) ? 1 : 0;
+                }
+                if(tasks[i].startsWith("II")){
+                    IIscore = (correctSide == chosenSide) ? 1 : 0;
+                }
             }
-            if(tasks[i].startsWith("CI")){
-                CIscore = (correctSide == chosenSide) ? 1 : 0;
-            }
-            if(tasks[i].startsWith("IC")){
-                ICscore = (correctSide == chosenSide) ? 1 : 0;
-            }
-            if(tasks[i].startsWith("II")){
-                IIscore = (correctSide == chosenSide) ? 1 : 0;
-            }
-        }
-        this.inclusion = values[8].contains("N");
-        System.out.println(Arrays.toString(values)); }
+            this.inclusion = values[8].contains("N");
+            System.out.println(Arrays.toString(values)); }
         catch(ArrayIndexOutOfBoundsException e){
             this.condition = "";
             this.distractor = "";
@@ -188,6 +186,4 @@ public class ExcelParticipant {
         } */
 
     }
-
-
 }

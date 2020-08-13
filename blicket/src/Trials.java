@@ -92,15 +92,15 @@ public class Trials {
         this.FC4 = new BlicketTrial(j.fc_4_selection,this.cond,this.dist,j.fc_4_unselected);
         this.FC = new BlicketTrial[]{this.FC1, this.FC2, this.FC3, this.FC4};
 
-        this.R1 = new BlicketTrial(j.rating_1_ID,this.cond,this.dist,j.rating_1_Value,j.rating_1_IsBlicket);
-        this.R2 = new BlicketTrial(j.rating_2_ID,this.cond,this.dist,j.rating_2_Value,j.rating_2_IsBlicket);
-        this.R3 = new BlicketTrial(j.rating_3_ID,this.cond,this.dist,j.rating_3_Value,j.rating_3_IsBlicket);
-        this.R4 = new BlicketTrial(j.rating_4_ID,this.cond,this.dist,j.rating_4_Value,j.rating_4_IsBlicket);
-        this.R5 = new BlicketTrial(j.rating_5_ID,this.cond,this.dist,j.rating_5_Value,j.rating_5_IsBlicket);
-        this.R6 = new BlicketTrial(j.rating_6_ID,this.cond,this.dist,j.rating_6_Value,j.rating_6_IsBlicket);
-        this.R7 = new BlicketTrial(j.rating_7_ID,this.cond,this.dist,j.rating_7_Value,j.rating_7_IsBlicket);
-        this.R8 = new BlicketTrial(j.rating_8_ID,this.cond,this.dist,j.rating_8_Value,j.rating_8_IsBlicket);
-        this.R = new BlicketTrial[]{this.R1, this.R2, this.R3, this.R4, this.R5, this.R6, this.R7, this.R8};
+        //this.R1 = new BlicketTrial(j.rating_1_ID,this.cond,this.dist,j.rating_1_Value,j.rating_1_IsBlicket);
+        //this.R2 = new BlicketTrial(j.rating_2_ID,this.cond,this.dist,j.rating_2_Value,j.rating_2_IsBlicket);
+        //this.R3 = new BlicketTrial(j.rating_3_ID,this.cond,this.dist,j.rating_3_Value,j.rating_3_IsBlicket);
+        //this.R4 = new BlicketTrial(j.rating_4_ID,this.cond,this.dist,j.rating_4_Value,j.rating_4_IsBlicket);
+        //this.R5 = new BlicketTrial(j.rating_5_ID,this.cond,this.dist,j.rating_5_Value,j.rating_5_IsBlicket);
+        //this.R6 = new BlicketTrial(j.rating_6_ID,this.cond,this.dist,j.rating_6_Value,j.rating_6_IsBlicket);
+        //this.R7 = new BlicketTrial(j.rating_7_ID,this.cond,this.dist,j.rating_7_Value,j.rating_7_IsBlicket);
+        //this.R8 = new BlicketTrial(j.rating_8_ID,this.cond,this.dist,j.rating_8_Value,j.rating_8_IsBlicket);
+        //this.R = new BlicketTrial[]{this.R1, this.R2, this.R3, this.R4, this.R5, this.R6, this.R7, this.R8};
 
         for (BlicketTrial b : this.FC){
             if (b.sort == "CC"){ this.scoreCC = b.score; }
@@ -109,12 +109,12 @@ public class Trials {
             if (b.sort == "II"){ this.scoreII = b.score; }
         }
 
-        for (BlicketTrial b : this.R){
+        /* for (BlicketTrial b : this.R){
             if (b.sort == "BC"){ this.scoreBC += b.score; this.corScoreBC += b.corr; this.conScoreBC += b.confidence; this.chanceBC += b.response? 1 : 0; }
             if (b.sort == "BI"){ this.scoreBI += b.score; this.corScoreBI += b.corr; this.conScoreBI += b.confidence; this.chanceBI += b.response? 1 : 0; }
             if (b.sort == "NC"){ this.scoreNC += b.score; this.corScoreNC += b.corr; this.conScoreNC += b.confidence; this.chanceNC += b.response? 1 : 0; }
             if (b.sort == "NI"){ this.scoreNI += b.score; this.corScoreNI += b.corr; this.conScoreNI += b.confidence; this.chanceNI += b.response? 1 : 0; }
-        }
+        } */
 
     }
 
@@ -170,16 +170,6 @@ public class Trials {
         sb.append(corScoreBI); sb.append(c);
         sb.append(corScoreNC); sb.append(c);
         sb.append(corScoreNI); sb.append(c);
-        sb.append(c);
-        sb.append(conScoreBC); sb.append(c);
-        sb.append(conScoreBI); sb.append(c);
-        sb.append(conScoreNC); sb.append(c);
-        sb.append(conScoreNI); sb.append(c);
-        sb.append(c);
-        sb.append(chanceBC); sb.append(c);
-        sb.append(chanceBI); sb.append(c);
-        sb.append(chanceNC); sb.append(c);
-        sb.append(chanceNI); sb.append(c);
         return sb.toString();
     }
 
@@ -262,11 +252,6 @@ public class Trials {
         sb.append(scoreCI); sb.append(c);
         sb.append(scoreIC); sb.append(c);
         sb.append(scoreII); sb.append(c);
-        sb.append(c);
-        sb.append(scoreBC); sb.append(c);
-        sb.append(scoreBI); sb.append(c);
-        sb.append(scoreNC); sb.append(c);
-        sb.append(scoreNI); sb.append(c);
         sb.append(attention); sb.append(c);
         sb.append(shape);
 

@@ -24,8 +24,8 @@ public class AdultExcelParticipant extends ExcelParticipant {
         CIscore = Integer.parseInt(values[5]);
         ICscore = Integer.parseInt(values[6]);
         IIscore = Integer.parseInt(values[7]);
-        this.attention = Boolean.parseBoolean(values[13]);
-        this.shape = values[14].toLowerCase().contains("shape");
+        this.attention = Boolean.parseBoolean(values[8]);
+        this.shape = values[9].toLowerCase().contains("shape");
         this.inclusion = Boolean.logicalAnd(this.attention, this.shape);
     }
 
@@ -54,6 +54,6 @@ public class AdultExcelParticipant extends ExcelParticipant {
     }
 
     public static void main(String[] args){
-        printLines("/Users/rgelpi1/Documents/Explore-Exploit/Physical/adultdata.csv","/Users/rgelpi1/Documents/Explore-Exploit/Physical/adultScore.csv");
+        printLines("/Users/rgelpi/Documents/Explore-Exploit/score.csv","/Users/rgelpi/Documents/Explore-Exploit/score_2.csv");
     }
 }

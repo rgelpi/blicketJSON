@@ -31,7 +31,7 @@ public class JSONData {
 
         Path output = Paths.get(path);
         List<String> lines = new ArrayList<>();
-        lines.add("attention1,attention2,comments,condition,distractor,experimentId,explanation,isComplete,fc_1_selection,fc_1_unselected,fc_2_selection,fc_2_unselected,fc_3_selection,fc_3_unselected,fc_4_selection,fc_4_unselected,rating_1_ID,rating_1_IsBlicket,rating_1_Value,rating_2_ID,rating_2_IsBlicket,rating_2_Value,rating_3_ID,rating_3_IsBlicket,rating_3_Value,rating_4_ID,rating_4_IsBlicket,rating_4_Value,rating_5_ID,rating_5_IsBlicket,rating_5_Value,rating_6_ID,rating_6_IsBlicket,rating_6_Value,rating_7_ID,rating_7_IsBlicket,rating_7_Value,rating_8_ID,rating_8_IsBlicket,rating_8_Value,rulepreference,sessionId,shape,submitDateTime");
+        lines.add("attention1,attention2,comments,condition,distractor,experimentId,explanation,isComplete,fc_1_selection,fc_1_unselected,fc_2_selection,fc_2_unselected,fc_3_selection,fc_3_unselected,fc_4_selection,fc_4_unselected,rulepreference,sessionId,shape,submitDateTime");
         for (JSONParticipant p : this.getParticipants()){
             lines.add(p.toString());
         }
@@ -44,7 +44,7 @@ public class JSONData {
 
         Path output = Paths.get(path);
         List<String> lines = new ArrayList<>();
-        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,BR,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Attention,Shape,Corr,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Conf,YESB.CON,YESB.INC,NONB.CON,NONB.INC,Chance,YESB.CON,YESB.INC,NONB.CON,NONB.INC");
+        lines.add("Participant ID,Condition,Distractor,FC,CONB.CON,CONB.INC,INCB.CON,INCB.INC,Attention,Shape");
         int count = 1;
         for (JSONParticipant p : this.getParticipants()) {
             Trials t = new Trials(p,count);
@@ -95,12 +95,12 @@ public class JSONData {
 
     public static void main(String[] args){
 
-        Path file = Paths.get("/Users/rgelpi/Documents/Explore-Exploit/JSON/new2.json");
+        Path file = Paths.get("/Users/rgelpi/Documents/Explore-Exploit/JSON/localOptima_070.json");
         JSONData data = new JSONData(file);
-        //data.printToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/raw.csv");
-        //data.printScoreToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/score.csv");
+        //data.printToCsv("/Users/rgelpi/Documents/Explore-Exploit/raw_070.csv");
+        data.printScoreToCsv("/Users/rgelpi/Documents/Explore-Exploit/score.csv");
         //data.printNoveltyToCsv("/Users/rgelpi1/Documents/2019/Explore-Exploit/Excels/novelty.csv");
-        data.reshapeAdultBRData("/Users/rgelpi/Documents/Explore-Exploit/brdata.csv");
+        //data.reshapeAdultBRData("/Users/rgelpi/Documents/Explore-Exploit/brdata.csv");
 
     }
 }
