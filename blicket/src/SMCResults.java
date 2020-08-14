@@ -18,7 +18,7 @@ public class SMCResults {
     protected Integer n_obs;
     protected Integer n_particles;
     protected String condition;
-    protected Map<String,Long> marginals = new HashMap<>();
+    protected Map<String,Double> marginals = new HashMap<>();
     protected Map<String,String> sigLookup = new HashMap<>();
     protected ArrayList<String> lines = new ArrayList<>();
 
@@ -31,7 +31,7 @@ public class SMCResults {
         for(SMCRun run : runs){
             for(int i = 0; i < run.size; i++){
                 if(this.marginals.containsKey(run.sigs[i])){
-                    Long value = this.marginals.get(run.sigs[i]);
+                    Double value = this.marginals.get(run.sigs[i]);
                     System.out.println(value);
                     this.marginals.put(run.sigs[i],value + run.probs[i]);
                 }else{
@@ -41,7 +41,7 @@ public class SMCResults {
             }
         }
         lines.add("sig,probs,rule");
-        for(Map.Entry<String, Long> pair : marginals.entrySet()){
+        for(Map.Entry<String, Double> pair : marginals.entrySet()){
             StringBuilder rule = new StringBuilder();
             for(Map.Entry<String, String> rule_pair : sigLookup.entrySet()) {
                 if (rule_pair.getValue().equals(pair.getKey())) {

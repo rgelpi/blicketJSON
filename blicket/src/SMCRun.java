@@ -3,7 +3,7 @@ import com.google.gson.JsonObject;
 
 public class SMCRun {
 
-    protected Long[] probs = new Long[10];
+    protected Double[] probs = new Double[10];
     protected String[] rules = new String[10];
     protected String[] sigs = new String[10];
     protected Integer size;
@@ -11,7 +11,7 @@ public class SMCRun {
     public SMCRun(JsonObject run){
         this.size = run.get("probs").getAsJsonArray().size();
         for(int i = 0; i < size; i++) {
-            probs[i] = run.get("probs").getAsJsonArray().get(i).getAsLong();
+            probs[i] = run.get("probs").getAsJsonArray().get(i).getAsDouble();
             rules[i] = run.get("support").getAsJsonArray().get(i).getAsJsonObject().get("rule").getAsString();
             sigs[i] = run.get("support").getAsJsonArray().get(i).getAsJsonObject().get("signature").getAsString();
         }
